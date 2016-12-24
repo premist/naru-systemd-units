@@ -6,7 +6,7 @@ After=docker.service
 [Service]
 Restart=always
 Environment=DATADOG_API_KEY=
-ExecStart=/usr/bin/docker run --rm --name dd-agent --net-host \
+ExecStart=/usr/bin/docker run --rm --name dd-agent --net=host \
                               -v /var/run/docker.sock:/var/run/docker.sock:ro \
                               -v /proc/:/host/proc/:ro \
                               -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro \
