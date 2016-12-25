@@ -1,0 +1,22 @@
+[Unit]
+Description=SoftEther VPN
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+Environment=PSK=
+Environment=USERS=
+ExecStart=/usr/bin/docker run --rm --name softether \
+                              --cap-add NET_ADMIN \
+                              -p 500:500/udp
+                              -p 4500:4500/udp \
+                              -p 1701:1701/tcp \
+                              -e PSK=$PSK \
+                              -e USERS=$USERS \
+                              premist/softethervpn:v0.0.1
+
+ExecStop=/usr/bin/docker stop softether
+
+[Install]
+WantedBy=multi-user.target
