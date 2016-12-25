@@ -13,4 +13,7 @@ ExecStart=/usr/bin/docker run --rm --name dd-agent --net=host \
                               -e API_KEY=$DATADOG_API_KEY \
                               -p 8125:8125 -p 8125:8125/udp \
                               datadog/docker-dd-agent:latest
+ExecStop=/usr/bin/docker stop dd-agent
 
+[Install]
+WantedBy=multi-user.target
