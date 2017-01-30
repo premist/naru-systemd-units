@@ -9,9 +9,10 @@ Environment=PSK=
 Environment=USERS=
 ExecStart=/usr/bin/docker run --rm --name softether \
                               --cap-add NET_ADMIN \
-                              -p 500:500/udp
+                              -p 500:500/udp \
                               -p 4500:4500/udp \
                               -p 1701:1701/tcp \
+                              -m 200M \
                               -e PSK=$PSK \
                               -e USERS=$USERS \
                               premist/softethervpn:v0.0.1
