@@ -8,6 +8,7 @@ Restart=always
 Environment=MYSQL_ROOT_PASSWORD=
 ExecStart=/usr/bin/docker run --rm --name mariadb --net=web \
                               -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+                              -v /opt/mariadb:/var/lib/mysql \
                               -m 768M \
                               -p 3306:3306 \
                               mariadb:10.1.21
