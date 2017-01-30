@@ -1,0 +1,16 @@
+[Unit]
+Description=MariaDB Server
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+Environment=MYSQL_ROOT_PASSWORD=
+ExecStart=/usr/bin/docker run --rm --name mariadb --net=web \
+                              -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+                              -p 3306:3306 \
+                              mariadb:10.1.21
+ExecStop=/usr/bin/docker stop mariadb
+
+[Install]
+WantedBy=multi-user.target
